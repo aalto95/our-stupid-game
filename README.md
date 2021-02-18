@@ -1,11 +1,11 @@
 # our-stupid-game
 # WIP
 
-The Hoax Entertainment:
-Pavlov Stanislav - team/tech lead
-Limonov Vladislav - adjutant
-Vinichenko Veniamin - story writing
+The Hoax Entertainment:<br/>
+Pavlov Stanislav - team/tech lead<br/>
+Limonov Vladislav - adjutant<br/>
+Vinichenko Veniamin - story writing<br/>
 
-Title: ...
-Genre: 2D
-Engine: Godot
+Title: ...<br/>
+Genre: 2D<br/>
+Engine: Godot<br/>
