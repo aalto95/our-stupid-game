@@ -1,4 +1,4 @@
-# our-stupid-game
+# Heavenly Cortex
 # WIP
 
 The Hoax Entertainment:<br/>
