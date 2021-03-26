@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/Player.png" type="Texture" id=2]
@@ -7,7 +7,9 @@
 extents = Vector2( 3, 7 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "Jump"
+resource_name = "Attack"
+
+[sub_resource type="Animation" id=3]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -23,8 +25,7 @@ tracks/0/keys = {
 "values": [ 6 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Run"
+[sub_resource type="Animation" id=4]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -40,8 +41,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4, 5, 3 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Stand"
+[sub_resource type="Animation" id=5]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite/Player:frame")
@@ -74,6 +74,10 @@ position = Vector2( 0, -7 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Jump = SubResource( 2 )
-anims/Run = SubResource( 3 )
-anims/Stand = SubResource( 4 )
+anims/Attack = SubResource( 2 )
+anims/Jump = SubResource( 3 )
+anims/Run = SubResource( 4 )
+anims/Stand = SubResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
