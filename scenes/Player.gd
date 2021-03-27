@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const TARGET_FPS = 60
 const ACCELERATION = 8
-const MAX_SPEED = 64
+var MAX_SPEED = 64
 const FRICTION = 10
 const AIR_RESISTANCE = 1
 const GRAVITY = 4
@@ -12,6 +12,16 @@ var motion = Vector2.ZERO
 
 onready var spritePlayer = $Sprite/Player
 onready var animationPlayer = $AnimationPlayer
+
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if !event.pressed and event.scancode == KEY_SHIFT:
+			MAX_SPEED = 64
+		elif event.pressed and event.scancode == KEY_SHIFT:
+			MAX_SPEED = 96
+			
+		if event.pressed and event.scancode == KEY_ESCAPE:
+			get_tree().quit()
 
 func _physics_process(delta):
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
