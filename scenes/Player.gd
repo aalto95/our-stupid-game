@@ -7,12 +7,16 @@ const FRICTION = 10
 const AIR_RESISTANCE = 1
 const GRAVITY = 4
 const JUMP_FORCE = 140
+var player_position = 0
 
 var motion = Vector2.ZERO
 
 onready var spritePlayer = $Sprite/Player
 onready var animationPlayer = $AnimationPlayer
 
+func handle_hit():
+	print("Player was hit!")
+	
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if !event.pressed and event.scancode == KEY_SHIFT:
@@ -24,6 +28,7 @@ func _unhandled_input(event):
 			get_tree().quit()
 
 func _physics_process(delta):
+	
 	var x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	
 	if x_input != 0:
