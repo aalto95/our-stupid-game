@@ -25,7 +25,7 @@ func _unhandled_input(event):
 			MAX_SPEED = 96
 			
 		if event.pressed and event.scancode == KEY_ESCAPE:
-			get_tree().uit()
+			get_tree().quit()
 
 func _physics_process(delta):
 	

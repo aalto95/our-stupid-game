@@ -458,7 +458,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 position = Vector2( -1, 0 )
 
 [node name="Viking" parent="." instance=ExtResource( 5 )]
-position = Vector2( 155, 56 )
+position = Vector2( 82, 56 )
 collision_layer = 2
 
 [node name="Samurai" parent="." instance=ExtResource( 4 )]
@@ -467,7 +467,13 @@ position = Vector2( 290, 2 )
 collision_layer = 2
 
 [node name="EnemySkeleton" parent="." instance=ExtResource( 3 )]
-position = Vector2( 78, 72 )
+position = Vector2( 14, 73 )
+collision_layer = 2
+
+[node name="EnemySkeleton2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 144, 72 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
 collision_layer = 2
 
 [node name="TileMap" type="TileMap" parent="."]
