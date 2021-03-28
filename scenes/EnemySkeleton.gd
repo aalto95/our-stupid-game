@@ -26,9 +26,21 @@ func _physics_process(delta):
 
 func handle_hit():
 	HP -= 10
-	state_machine.travel("hit")
-	print("Skeleton was hit!")
+	if (HP > 0):
+		
+		$AttackSprite.visible = false
+		$HurtSprite.visible = true
+		state_machine.travel("hurt")
+		print("Skeleton was hit!")
+		yield(get_tree().create_timer(0.5), "timeout")
+		$HurtSprite.visible = false
+		$AttackSprite.visible = true
+	
 	if HP <= 0:
+		remove_child($AttackSprite)
+		remove_child($IdleSprite)
+		remove_child($HurtSprite)
+		$DeathSprite.visible = true
 		state_machine.travel("death")
 		
 func _on_AxeHit_body_entered(body):
@@ -37,8 +49,8 @@ func _on_AxeHit_body_entered(body):
 
 func _on_AttackTrigger_body_entered(body):
 	state_machine.travel("attack")
-	$AttackSprite.visible = true
-	$IdleSprite.visible = false
-	yield(get_tree().create_timer(1.9), "timeout")
-	$IdleSprite.visible = true
-	$AttackSprite.visible = false
+	#$AttackSprite.visible = true
+	#$IdleSprite.visible = false
+	#yield(get_tree().create_timer(1.9), "timeout")
+	#$IdleSprite.visible = true
+	#$AttackSprite.visible = false

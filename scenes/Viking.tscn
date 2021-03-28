@@ -1,7 +1,10 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/viking/viking2.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Viking.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=36]
+extents = Vector2( 4, 10 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack1"
@@ -17,6 +20,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 27, 28, 29, 30, 31 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/SwordHit/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=28]
@@ -53,6 +68,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "death"
+length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -60,10 +76,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 45, 46, 47, 48, 49, 50, 51, 52, 53, 53, 53 ]
+"values": [ 45, 46, 47, 48, 49, 50, 51, 52, 53 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -179,15 +195,16 @@ states/attack2/position = Vector2( 141, 134 )
 states/block/node = SubResource( 9 )
 states/block/position = Vector2( 226, 243 )
 states/death/node = SubResource( 10 )
-states/death/position = Vector2( 528, 49 )
+states/death/position = Vector2( 551, 54 )
 states/idle/node = SubResource( 11 )
-states/idle/position = Vector2( 377, 142 )
+states/idle/position = Vector2( 392, 123 )
 states/jump/node = SubResource( 12 )
 states/jump/position = Vector2( 528, 208 )
 states/run/node = SubResource( 13 )
 states/run/position = Vector2( 354, 49 )
 transitions = [ "idle", "block", SubResource( 20 ), "block", "idle", SubResource( 21 ), "idle", "death", SubResource( 22 ), "idle", "run", SubResource( 24 ), "run", "idle", SubResource( 25 ), "jump", "idle", SubResource( 26 ), "idle", "jump", SubResource( 27 ), "attack1", "idle", SubResource( 31 ), "idle", "attack1", SubResource( 32 ), "run", "attack1", SubResource( 33 ), "idle", "attack2", SubResource( 34 ), "attack2", "idle", SubResource( 35 ) ]
 start_node = "idle"
+end_node = "death"
 graph_offset = Vector2( -87, 17 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
@@ -200,7 +217,14 @@ position = Vector2( -1, 0 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 9
-frame = 1
+frame = 53
+
+[node name="SwordHit" type="Area2D" parent="Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/SwordHit"]
+position = Vector2( -15, 6 )
+shape = SubResource( 36 )
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attack1 = SubResource( 1 )
@@ -223,3 +247,4 @@ parameters/playback = SubResource( 17 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+[connection signal="body_entered" from="Sprite/SwordHit" to="." method="_on_SwordHit_body_entered"]

@@ -9,7 +9,7 @@ const AIR_RESISTANCE = 1
 const GRAVITY = 4
 const JUMP_FORCE = 140
 var SPEED = 30
-var HP = 50
+var HP = 30
 var motion = Vector2.ZERO
 var state_machine
 
@@ -30,7 +30,7 @@ func handle_hit():
 	print("Samurai was hit!")
 	if HP == 0:
 		$HitSprite.visible = false
-		$DeathSprite.visible = true
+		 
 		state_machine.travel("death")
 		
 func _on_AxeHit_body_entered(body):
