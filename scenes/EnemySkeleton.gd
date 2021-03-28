@@ -11,26 +11,34 @@ const JUMP_FORCE = 140
 var SPEED = 30
 var HP = 30
 var motion = Vector2.ZERO
+var state_machine
 
+func _process(delta):
+	state_machine = $AnimationTree.get("parameters/playback")
+	var current = state_machine.get_current_node()
 
 func _physics_process(delta):
 	
 	#motion.x = SPEED
 	motion.y += GRAVITY
 	
-	$AnimationPlayer.play("attack")
-	$AnimatedSprite.play("attack")
-	
 	motion = move_and_slide(motion, Vector2.UP)
 
 func handle_hit():
 	HP -= 10
-	$AnimatedSprite.play("hit")
+	state_machine.travel("hit")
 	print("Skeleton was hit!")
 	if HP <= 0:
-		$AnimationPlayer.stop()
+		state_machine.travel("death")
 		
-	
 func _on_AxeHit_body_entered(body):
 	if body.has_method("handle_hit"):
 		body.handle_hit()
+
+func _on_AttackTrigger_body_entered(body):
+	state_machine.travel("attack")
+	$AttackSprite.visible = true
+	$IdleSprite.visible = false
+	yield(get_tree().create_timer(1.9), "timeout")
+	$IdleSprite.visible = true
+	$AttackSprite.visible = false

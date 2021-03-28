@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Attack1.png-4899d2aa7b4c6edd0bb00b69ca9b405d.stex"
+path="res://.import/viking2.png-c7a812f160571adece3b263795a98eb2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Samurai/Attack1.png"
-dest_files=[ "res://.import/Attack1.png-4899d2aa7b4c6edd0bb00b69ca9b405d.stex" ]
+source_file="res://assets/viking/viking2.png"
+dest_files=[ "res://.import/viking2.png-c7a812f160571adece3b263795a98eb2.stex" ]
 
 [params]
 

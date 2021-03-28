@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Attack1.png-4899d2aa7b4c6edd0bb00b69ca9b405d.stex"
+path="res://.import/SkeletonSpritesheet.png-2bca2b09dbf765fc0c805e5a0290706a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Samurai/Attack1.png"
-dest_files=[ "res://.import/Attack1.png-4899d2aa7b4c6edd0bb00b69ca9b405d.stex" ]
+source_file="res://assets/Skeleton/SkeletonSpritesheet.png"
+dest_files=[ "res://.import/SkeletonSpritesheet.png-2bca2b09dbf765fc0c805e5a0290706a.stex" ]
 
 [params]
 
