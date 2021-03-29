@@ -2,12 +2,7 @@ extends KinematicBody2D
 
 const GameOverScene = preload("res://scenes/GameOver.tscn")
 
-const TARGET_FPS = 60
-const ACCELERATION = 8
-const FRICTION = 10
-const AIR_RESISTANCE = 1
 const GRAVITY = 4
-const JUMP_FORCE = 140
 var SPEED = 30
 var HP = 50
 var velocity = Vector2.ZERO
@@ -20,15 +15,18 @@ func _ready():
 	
 func handle_hit():
 	HP -= 10
-	if (global.player.current == "attack1"):
-		$HurtWithSwordSound1.play()
-	if (global.player.current == "attack2"):
-		$HurtWithSwordSound2.play()
-	if (HP > 0):
+	if HP > 0 or HP == 0:
+		if (global.player.current == "attack1"):
+			$HurtWithSwordSound1.play()
+			$HurtSound.play()
+		if (global.player.current == "attack2"):
+			$HurtWithSwordSound2.play()
+			$HurtSound.play()
 		state_machine.travel("hurt")
 		print("Skeleton was hit!")
-	if HP <= 0:
+	if HP == 0:
 		state_machine.travel("death")
+		$DeathSound.play()
 	
 func _process(delta):
 	velocity.x = 0
@@ -50,14 +48,17 @@ func _process(delta):
 		$WalkSprite.visible = false
 		$HurtSprite.visible = false
 		$AttackSprite.visible = true
-	
+		if $AxeSwingSound.playing == false:
+			$AxeSwingSound.play()
+		
 	if current == "death":
 		$AttackSprite.visible = false
 		$IdleSprite.visible = false
 		$HurtSprite.visible = false
 		$WalkSprite.visible = false
 		$DeathSprite.visible = true
-	
+		pass
+		
 	if current == "idle":
 		$WalkSprite.visible = false
 		$IdleSprite.visible = true
@@ -67,6 +68,8 @@ func _process(delta):
 		$IdleSprite.visible = false
 		$WalkSprite.visible = true
 		$AttackSprite.visible = false
+		if $FootstepSound.playing == false:
+			$FootstepSound.play()
 		
 	while body_entered == true and global.player.HP > 0 and HP > 0:
 		state_machine.travel("attack")
@@ -106,6 +109,7 @@ func _physics_process(delta):
 func _on_AxeHit_body_entered(body):
 	if body.has_method("handle_hit"):
 		body.handle_hit()
+	$AxeHitSound.play()
 
 func _on_AttackTrigger_body_entered(body):
 	body_entered = true

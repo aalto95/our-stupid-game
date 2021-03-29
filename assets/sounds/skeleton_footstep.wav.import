@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/skeleton_footstep.wav-b15fa7dbdb280856536f77851ccc9ee3.sample"
+
+[deps]
+
+source_file="res://assets/sounds/skeleton_footstep.wav"
+dest_files=[ "res://.import/skeleton_footstep.wav-b15fa7dbdb280856536f77851ccc9ee3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

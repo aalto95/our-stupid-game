@@ -9,7 +9,7 @@ const GRAVITY = 4
 const JUMP_FORCE = 140
 var player_position = 0
 var velocity = Vector2.ZERO
-var HP = 20
+var HP = 10
 var x_input = 0
 var state_machine
 var current 
@@ -29,10 +29,6 @@ func _process(delta):
 		#print("it collides")
 		pass
 		
-	if current == "attack1" or current == "attack2":
-		#$Whoosh.play() 
-		pass
-		
 	while current == "block":
 		velocity.x = 0
 		yield(get_tree().create_timer(0.5), "timeout")
@@ -40,6 +36,14 @@ func _process(delta):
 	if !is_on_floor():
 		state_machine.travel("jump")
 	
+	if current == "attack1":
+		if $Whoosh.playing == false:
+			$Whoosh.play()
+				
+	if current == "attack2":
+		if $WhooshShort.playing == false:
+			$WhooshShort.play()
+		
 	if Input.is_action_just_pressed("ui_left") && HP > 0:
 		$Sprite.scale.x = -1
 	
@@ -83,7 +87,9 @@ func handle_hit():
 	print("Player was hit!")
 	if HP > 0:
 		state_machine.travel("block")
-		#yield(get_tree().create_timer(0.5), "timeout")
+		$HurtSound.play()
+	if HP == 0:
+		$GroanSound.play()
 		
 
 	
