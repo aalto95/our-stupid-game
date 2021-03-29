@@ -9,17 +9,26 @@ const GRAVITY = 4
 const JUMP_FORCE = 140
 var player_position = 0
 var velocity = Vector2.ZERO
-var HP = 10
+var HP = 20
 var x_input = 0
 var state_machine
+var current 
+
+func _ready():
+	global.player = self
 
 func _process(delta):
 	state_machine = $AnimationTree.get("parameters/playback")
-	var current = state_machine.get_current_node()
+	current = state_machine.get_current_node()
 	state_machine.travel("idle")
+	print(current)
 	if x_input != 0:
 		state_machine.travel("run")
-			
+	
+	while current == "block":
+		velocity.x = 0
+		yield(get_tree().create_timer(0.5), "timeout")
+		
 	if !is_on_floor():
 		state_machine.travel("jump")
 	
@@ -31,7 +40,8 @@ func _process(delta):
 		
 	if HP <= 0:
 		state_machine.travel("die")
-		set_physics_process(false)
+		set_physics_process(false) #Disable physics
+		get_tree().get_root().set_disable_input(true) #Disable input
 		yield(get_tree().create_timer(0.5), "timeout")
 		
 
@@ -65,6 +75,8 @@ func handle_hit():
 	print("Player was hit!")
 	if HP > 0:
 		state_machine.travel("block")
+		#yield(get_tree().create_timer(0.5), "timeout")
+		
 
 	
 func _unhandled_input(event):
@@ -77,10 +89,12 @@ func _unhandled_input(event):
 			get_tree().quit()
 		if event.pressed and event.scancode == KEY_E:
 			state_machine.travel("attack1")
+			
 		if event.pressed and event.scancode == KEY_F:
 			state_machine.travel("attack2")
-#func _ready():
+			
 
+	 
 func _on_SwordHit_body_entered(body):
 	if body.has_method("handle_hit"):
 		body.handle_hit()
