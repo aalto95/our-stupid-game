@@ -15,22 +15,20 @@ var state_machine
 var body_entered = false
 var current
 
+func _ready():
+	global.skeleton = self
+	
 func handle_hit():
 	HP -= 10
+	if (global.player.current == "attack1"):
+		$HurtWithSwordSound1.play()
+	if (global.player.current == "attack2"):
+		$HurtWithSwordSound2.play()
 	if (HP > 0):
 		state_machine.travel("hurt")
 		print("Skeleton was hit!")
-	
 	if HP <= 0:
-		#remove_child($AttackSprite)
-		#remove_child($IdleSprite)
-		#remove_child($HurtSprite)
-		#remove_child($WalkSprite)
-	
 		state_machine.travel("death")
-
-
-
 	
 func _process(delta):
 	velocity.x = 0

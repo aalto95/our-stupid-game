@@ -21,10 +21,18 @@ func _process(delta):
 	state_machine = $AnimationTree.get("parameters/playback")
 	current = state_machine.get_current_node()
 	state_machine.travel("idle")
-	print(current)
-	if x_input != 0:
+	if x_input != 0 and !$RayCast2D.is_colliding():
 		state_machine.travel("run")
-	
+	else:
+		state_machine.travel("idle")
+	if $RayCast2D.is_colliding():
+		#print("it collides")
+		pass
+		
+	if current == "attack1" or current == "attack2":
+		#$Whoosh.play() 
+		pass
+		
 	while current == "block":
 		velocity.x = 0
 		yield(get_tree().create_timer(0.5), "timeout")
@@ -37,7 +45,7 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("ui_right") && HP > 0:
 		$Sprite.scale.x = 1
-		
+	
 	if HP <= 0:
 		state_machine.travel("die")
 		set_physics_process(false) #Disable physics
@@ -87,12 +95,10 @@ func _unhandled_input(event):
 			MAX_SPEED = 96
 		if event.pressed and event.scancode == KEY_ESCAPE:
 			get_tree().quit()
-		if event.pressed and event.scancode == KEY_E:
+		if event.pressed and event.scancode == KEY_C:
 			state_machine.travel("attack1")
-			
 		if event.pressed and event.scancode == KEY_F:
 			state_machine.travel("attack2")
-			
 
 	 
 func _on_SwordHit_body_entered(body):

@@ -1,8 +1,10 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://assets/viking/viking2.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Viking.gd" type="Script" id=2]
-[ext_resource path="res://assets/night-town-background-previewx2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sounds/attack_sound1.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/attack_sound2.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/whoosh.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 7 )
@@ -207,13 +209,13 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=38]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=39]
-
-[sub_resource type="AnimationNodeStateMachine" id=35]
+[sub_resource type="AnimationNodeStateMachine" id=38]
 states/attack1/node = SubResource( 10 )
 states/attack1/position = Vector2( 307, 233 )
 states/attack2/node = SubResource( 11 )
@@ -228,29 +230,17 @@ states/jump/node = SubResource( 15 )
 states/jump/position = Vector2( 712, 153 )
 states/run/node = SubResource( 16 )
 states/run/position = Vector2( 380, 47 )
-transitions = [ "idle", "block", SubResource( 17 ), "block", "idle", SubResource( 18 ), "idle", "run", SubResource( 19 ), "run", "idle", SubResource( 20 ), "jump", "idle", SubResource( 21 ), "idle", "jump", SubResource( 22 ), "attack1", "idle", SubResource( 23 ), "idle", "attack1", SubResource( 24 ), "run", "attack1", SubResource( 25 ), "idle", "attack2", SubResource( 26 ), "attack2", "idle", SubResource( 27 ), "idle", "die", SubResource( 28 ), "attack2", "die", SubResource( 29 ), "attack1", "die", SubResource( 30 ), "run", "attack2", SubResource( 31 ), "jump", "attack1", SubResource( 32 ), "jump", "attack2", SubResource( 33 ), "jump", "block", SubResource( 34 ), "run", "block", SubResource( 37 ), "attack1", "block", SubResource( 38 ), "attack2", "block", SubResource( 39 ) ]
+transitions = [ "idle", "block", SubResource( 17 ), "block", "idle", SubResource( 18 ), "idle", "run", SubResource( 19 ), "run", "idle", SubResource( 20 ), "jump", "idle", SubResource( 21 ), "idle", "jump", SubResource( 22 ), "attack1", "idle", SubResource( 23 ), "idle", "attack1", SubResource( 24 ), "run", "attack1", SubResource( 25 ), "idle", "attack2", SubResource( 26 ), "attack2", "idle", SubResource( 27 ), "idle", "die", SubResource( 28 ), "attack2", "die", SubResource( 29 ), "attack1", "die", SubResource( 30 ), "run", "attack2", SubResource( 31 ), "jump", "attack1", SubResource( 32 ), "jump", "attack2", SubResource( 33 ), "jump", "block", SubResource( 34 ), "run", "block", SubResource( 35 ), "attack1", "block", SubResource( 36 ), "attack2", "block", SubResource( 37 ) ]
 start_node = "idle"
 end_node = "die"
 graph_offset = Vector2( -87, 17 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=36]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 
 [node name="Viking" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 2147483649
 script = ExtResource( 2 )
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-margin_left = -160.0
-margin_top = -94.0
-margin_right = 161.0
-margin_bottom = 99.0
-texture = ExtResource( 3 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, 0 )
@@ -258,7 +248,7 @@ scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 9
-frame = 4
+frame = 6
 
 [node name="SwordHit" type="Area2D" parent="Sprite"]
 
@@ -281,11 +271,26 @@ position = Vector2( -1, 7 )
 shape = SubResource( 9 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 35 )
+tree_root = SubResource( 38 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 36 )
+parameters/playback = SubResource( 39 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 6, 6 )
+rotation = 1.56785
+enabled = true
+cast_to = Vector2( 0, 14 )
+
+[node name="AttackSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="AttackSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="Whoosh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 [connection signal="body_entered" from="Sprite/SwordHit" to="." method="_on_SwordHit_body_entered"]
