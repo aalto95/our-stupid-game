@@ -9,11 +9,22 @@ const GRAVITY = 4
 const JUMP_FORCE = 140
 var player_position = 0
 var velocity = Vector2.ZERO
-var HP = 10
+var HP = 30
 var x_input = 0
 var state_machine
 var current 
+var is_dead = false
+var is_grounded
+var is_jumping
 
+func dead():
+	is_dead = true
+	velocity = Vector2(0, 0)
+	state_machine.travel("die")
+	set_physics_process(false) #Disable physics
+	get_tree().get_root().set_disable_input(true) #Disable input
+	$CollisionShape2D.disabled = true
+	
 func _ready():
 	global.player = self
 
@@ -21,13 +32,10 @@ func _process(delta):
 	state_machine = $AnimationTree.get("parameters/playback")
 	current = state_machine.get_current_node()
 	state_machine.travel("idle")
-	if x_input != 0 and !$RayCast2D.is_colliding():
+	if x_input != 0:
 		state_machine.travel("run")
 	else:
 		state_machine.travel("idle")
-	if $RayCast2D.is_colliding():
-		#print("it collides")
-		pass
 		
 	while current == "block":
 		velocity.x = 0
@@ -51,37 +59,36 @@ func _process(delta):
 		$Sprite.scale.x = 1
 	
 	if HP <= 0:
-		state_machine.travel("die")
-		set_physics_process(false) #Disable physics
-		get_tree().get_root().set_disable_input(true) #Disable input
-		yield(get_tree().create_timer(0.5), "timeout")
-		
+		dead()
 
 func _physics_process(delta):
-	
-	x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	
-	if x_input != 0:
-		velocity.x += x_input * ACCELERATION * delta * TARGET_FPS
-		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
-	
+	is_grounded = is_on_floor()
+	_handle_move_input()
+	_apply_gravity(delta)
+	_apply_movement(delta)
+
+func _apply_gravity(delta):
 	velocity.y += GRAVITY * delta * TARGET_FPS
 	
-	if is_on_floor():
-		if x_input == 0:
-			velocity.x = lerp(velocity.x, 0, FRICTION * delta)
-			
-		if Input.is_action_just_pressed("ui_up"):
-			velocity.y = -JUMP_FORCE
+func _apply_movement(delta):
+	if is_jumping && velocity.y >= 0:
+		is_jumping = false
 		
-		if Input.is_action_just_released("ui_up") and velocity.y < -JUMP_FORCE/2:
-			velocity.y = -JUMP_FORCE/2
-		
-		if x_input == 0:
-			velocity.x = lerp(velocity.x, 0, AIR_RESISTANCE * delta)
+	var snap = Vector2.DOWN * 32 if !is_jumping else Vector2.ZERO
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
 	
-	velocity = move_and_slide(velocity, Vector2.UP)
-
+	if is_grounded && x_input == 0:
+		velocity.x = lerp(velocity.x, 0, FRICTION * delta) #disable slipping
+			
+func _handle_move_input():
+	x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	
+	
+		
+	if x_input != 0:
+		velocity.x += x_input * ACCELERATION * TARGET_FPS #enable movement on x axis
+		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED) #disable infinite speed
+		
 func handle_hit():
 	HP -= 10
 	print("Player was hit!")
@@ -91,8 +98,6 @@ func handle_hit():
 	if HP == 0:
 		$GroanSound.play()
 		
-
-	
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if !event.pressed and event.scancode == KEY_SHIFT:
