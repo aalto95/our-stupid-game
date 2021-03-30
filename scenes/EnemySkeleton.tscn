@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/Skeleton/SkeletonWalk.png" type="Texture" id=1]
 [ext_resource path="res://assets/Skeleton/SkeletonAttack.png" type="Texture" id=2]
 [ext_resource path="res://assets/Skeleton/SkeletonIdle.png" type="Texture" id=3]
-[ext_resource path="res://scenes/EnemySkeleton.gd" type="Script" id=4]
+[ext_resource path="res://scripts/EnemySkeleton.gd" type="Script" id=4]
 [ext_resource path="res://assets/Skeleton/SkeletonHit.png" type="Texture" id=5]
 [ext_resource path="res://assets/Skeleton/SkeletonDead.png" type="Texture" id=6]
 [ext_resource path="res://assets/sounds/attack_sound1.wav" type="AudioStream" id=7]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/sounds/skeleton_footstep.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/sounds/axe_swing.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/sounds/axe_hit.wav" type="AudioStream" id=13]
+
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
