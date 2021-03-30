@@ -1,0 +1,518 @@
+[gd_scene load_steps=92 format=2]
+
+[ext_resource path="res://assets/Skeleton/SkeletonWalk.png" type="Texture" id=1]
+[ext_resource path="res://assets/Skeleton/SkeletonAttack.png" type="Texture" id=2]
+[ext_resource path="res://assets/Skeleton/SkeletonIdle.png" type="Texture" id=3]
+[ext_resource path="res://scenes/EnemySkeleton.gd" type="Script" id=4]
+[ext_resource path="res://assets/Skeleton/SkeletonHit.png" type="Texture" id=5]
+[ext_resource path="res://assets/Skeleton/SkeletonDead.png" type="Texture" id=6]
+[ext_resource path="res://assets/sounds/attack_sound1.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/attack_sound2.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/sounds/skeleton_hurt.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/sounds/skeleton_death.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/sounds/skeleton_footstep.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/sounds/axe_swing.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/sounds/axe_hit.wav" type="AudioStream" id=13]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 24, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 72, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 96, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 120, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 144, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 168, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 216, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 240, 0, 24, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 43, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 86, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 129, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 172, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 2 )
+region = Rect2( 215, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 2 )
+region = Rect2( 258, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 2 )
+region = Rect2( 301, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 2 )
+region = Rect2( 344, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 2 )
+region = Rect2( 387, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 2 )
+region = Rect2( 430, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 2 )
+region = Rect2( 473, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 2 )
+region = Rect2( 516, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 2 )
+region = Rect2( 559, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 2 )
+region = Rect2( 602, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 2 )
+region = Rect2( 645, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 2 )
+region = Rect2( 688, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 2 )
+region = Rect2( 731, 0, 43, 37 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 1 )
+region = Rect2( 22, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 1 )
+region = Rect2( 44, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 1 )
+region = Rect2( 66, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 1 )
+region = Rect2( 88, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 1 )
+region = Rect2( 110, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 1 )
+region = Rect2( 132, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 1 )
+region = Rect2( 154, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 1 )
+region = Rect2( 176, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 1 )
+region = Rect2( 198, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 1 )
+region = Rect2( 220, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 1 )
+region = Rect2( 242, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 1 )
+region = Rect2( 264, 0, 22, 33 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 30, 32 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 5 )
+region = Rect2( 30, 0, 30, 32 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 5 )
+region = Rect2( 60, 0, 30, 32 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 5 )
+region = Rect2( 90, 0, 30, 32 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 5 )
+region = Rect2( 120, 0, 30, 32 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 5 )
+region = Rect2( 150, 0, 30, 32 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 5 )
+region = Rect2( 180, 0, 30, 32 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 5 )
+region = Rect2( 210, 0, 30, 32 )
+
+[sub_resource type="SpriteFrames" id=51]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "idle",
+"speed": 7.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": true,
+"name": "attack",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ) ],
+"loop": true,
+"name": "walk",
+"speed": 12.0
+}, {
+"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=52]
+extents = Vector2( 13.9407, 10 )
+
+[sub_resource type="RectangleShape2D" id=53]
+extents = Vector2( 12.5088, 10 )
+
+[sub_resource type="Animation" id=54]
+length = 1.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("../EnemySkeleton/AttackSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 17 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../EnemySkeleton/AttackSprite/AxeHit/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=55]
+resource_name = "death"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("../EnemySkeleton/DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 14 ]
+}
+
+[sub_resource type="Animation" id=56]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../EnemySkeleton/HurtSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=57]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../EnemySkeleton/IdleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=58]
+resource_name = "walk"
+length = 1.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../EnemySkeleton/WalkSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=59]
+animation = "attack"
+
+[sub_resource type="AnimationNodeAnimation" id=60]
+animation = "death"
+
+[sub_resource type="AnimationNodeAnimation" id=61]
+animation = "hurt"
+
+[sub_resource type="AnimationNodeAnimation" id=62]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=63]
+animation = "walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=64]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=65]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=70]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=71]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=73]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=74]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=75]
+
+[sub_resource type="AnimationNodeStateMachine" id=76]
+states/attack/node = SubResource( 59 )
+states/attack/position = Vector2( 306, 46 )
+states/death/node = SubResource( 60 )
+states/death/position = Vector2( 154, 208 )
+states/hurt/node = SubResource( 61 )
+states/hurt/position = Vector2( 461, 40 )
+states/idle/node = SubResource( 62 )
+states/idle/position = Vector2( 461, 208 )
+states/walk/node = SubResource( 63 )
+states/walk/position = Vector2( 607, 137 )
+transitions = [ "idle", "attack", SubResource( 64 ), "attack", "idle", SubResource( 65 ), "idle", "death", SubResource( 66 ), "idle", "hurt", SubResource( 67 ), "hurt", "idle", SubResource( 68 ), "attack", "hurt", SubResource( 69 ), "attack", "death", SubResource( 70 ), "idle", "walk", SubResource( 71 ), "walk", "idle", SubResource( 72 ), "walk", "attack", SubResource( 73 ), "attack", "walk", SubResource( 74 ), "walk", "hurt", SubResource( 75 ) ]
+start_node = "idle"
+end_node = "death"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=77]
+
+[sub_resource type="RectangleShape2D" id=78]
+extents = Vector2( 3.27093, 11.6862 )
+
+[node name="EnemySkeleton" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2147483649
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 0.835951, -36.9355 )
+frames = SubResource( 51 )
+animation = "hit"
+centered = false
+
+[node name="AttackSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 21.6408, -18.5354 )
+texture = ExtResource( 2 )
+hframes = 18
+frame = 1
+
+[node name="AxeHit" type="Area2D" parent="AttackSprite"]
+position = Vector2( 3.77008, -1.5874 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackSprite/AxeHit"]
+position = Vector2( 3.87504, 9.95285 )
+shape = SubResource( 52 )
+disabled = true
+
+[node name="AttackTrigger" type="Area2D" parent="AttackSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackSprite/AttackTrigger"]
+position = Vector2( 6.23451, 8.42746 )
+shape = SubResource( 53 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 54 )
+anims/death = SubResource( 55 )
+anims/hurt = SubResource( 56 )
+anims/idle = SubResource( 57 )
+anims/walk = SubResource( 58 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 76 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 77 )
+
+[node name="IdleSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 15.0137, -16.2029 )
+texture = ExtResource( 3 )
+hframes = 11
+frame = 9
+
+[node name="DeathSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 8.58331, -16.1654 )
+texture = ExtResource( 6 )
+hframes = 15
+
+[node name="HurtSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 12.2662, -15.9068 )
+texture = ExtResource( 5 )
+hframes = 8
+
+[node name="WalkSprite" type="Sprite" parent="."]
+position = Vector2( 14.0674, -16.5135 )
+texture = ExtResource( 1 )
+hframes = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 10.681, -11.7597 )
+shape = SubResource( 78 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -91.2071, -11.6292 )
+rotation = -1.57603
+enabled = true
+cast_to = Vector2( 0, 200 )
+collision_mask = 6
+
+[node name="HurtWithSwordSound1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+max_distance = 500.0
+attenuation = 6.27667
+
+[node name="HurtWithSwordSound2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+max_distance = 500.0
+attenuation = 6.9644
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+max_distance = 500.0
+attenuation = 4.28709
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+max_distance = 500.0
+attenuation = 6.49802
+
+[node name="FootstepSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+max_distance = 500.0
+attenuation = 5.65686
+
+[node name="AxeSwingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+max_distance = 500.0
+attenuation = 5.65686
+
+[node name="AxeHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )
+max_distance = 500.0
+attenuation = 6.06286
+[connection signal="body_entered" from="AttackSprite/AxeHit" to="." method="_on_AxeHit_body_entered"]
+[connection signal="body_entered" from="AttackSprite/AttackTrigger" to="." method="_on_AttackTrigger_body_entered"]
+[connection signal="body_exited" from="AttackSprite/AttackTrigger" to="." method="_on_AttackTrigger_body_exited"]

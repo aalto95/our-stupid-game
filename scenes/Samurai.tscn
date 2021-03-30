@@ -1,0 +1,123 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/Samurai/Idle.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Samurai.gd" type="Script" id=2]
+[ext_resource path="res://assets/Samurai/Take Hit - white silhouette.png" type="Texture" id=3]
+[ext_resource path="res://assets/Samurai/Death.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 21 )
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "death"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "hit"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachine" id=3]
+states/death/node = SubResource( 11 )
+states/death/position = Vector2( 614, 50 )
+states/hit/node = SubResource( 7 )
+states/hit/position = Vector2( 274, 99 )
+states/idle/node = SubResource( 2 )
+states/idle/position = Vector2( 451, 71 )
+transitions = [ "idle", "hit", SubResource( 8 ), "hit", "idle", SubResource( 9 ), "idle", "death", SubResource( 12 ) ]
+start_node = "idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+
+[sub_resource type="Animation" id=5]
+resource_name = "attack"
+
+[sub_resource type="Animation" id=13]
+resource_name = "death"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 5, 5 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("HitSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("IdleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[node name="Samurai" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="IdleSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( -2, 0 )
+texture = ExtResource( 1 )
+hframes = 8
+
+[node name="HitSprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 4
+
+[node name="DeathSprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 4 )
+hframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 1 )
+shape = SubResource( 1 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 3 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 5 )
+anims/death = SubResource( 13 )
+anims/hit = SubResource( 10 )
+anims/idle = SubResource( 6 )
