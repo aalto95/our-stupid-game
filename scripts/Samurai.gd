@@ -24,7 +24,7 @@ func _physics_process(delta):
 
 func handle_hit():
 	HP -= 10
-	state_machine.travel("hit")
+	#state_machine.travel("hit")
 	print("Samurai was hit!")
 	if HP == 0:
 		$HitSprite.visible = false

@@ -1,12 +1,10 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://assets/Tileset.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Demon.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/EnemySkeleton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Samurai.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/SkeletonExecutioner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Viking.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/World.gd" type="Script" id=6]
-
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -461,26 +459,21 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 position = Vector2( -1, 0 )
 script = ExtResource( 6 )
 
-[node name="Samurai" parent="." instance=ExtResource( 4 )]
-visible = false
-position = Vector2( 290, 2 )
-collision_layer = 2
-
 [node name="EnemySkeleton" parent="." instance=ExtResource( 3 )]
-position = Vector2( 14, 73 )
+position = Vector2( 22, 72 )
+
+[node name="EnemySkeleton2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -157, 152 )
+
+[node name="SkeletonExecutioner" parent="." instance=ExtResource( 3 )]
+position = Vector2( 597, 296 )
 
 [node name="Demon" parent="." instance=ExtResource( 2 )]
-position = Vector2( 259, -17 )
+position = Vector2( 359, 19 )
 
 [node name="Viking" parent="." instance=ExtResource( 5 )]
-position = Vector2( 248, 56 )
+position = Vector2( -255, 136 )
 collision_layer = 2
-
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2( 431, -8 )
-rotation = 3.1411
-enabled = true
-collision_mask = 4
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 0, 8 )
