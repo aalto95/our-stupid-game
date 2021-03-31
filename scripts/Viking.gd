@@ -9,7 +9,7 @@ const GRAVITY = 4
 const JUMP_FORCE = 140
 var player_position = 0
 var velocity = Vector2.ZERO
-var HP = 10
+var HP = 50
 var x_input = 0
 var state_machine
 var current 

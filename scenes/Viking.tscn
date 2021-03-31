@@ -9,7 +9,6 @@
 [ext_resource path="res://assets/sounds/player_groan.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/sounds/whoosh_short.wav" type="AudioStream" id=8]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 7 )
 
@@ -252,7 +251,7 @@ scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 9
-frame = 5
+frame = 2
 
 [node name="SwordHit" type="Area2D" parent="Sprite"]
 
