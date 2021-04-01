@@ -16,6 +16,7 @@ var current
 
 func _ready():
 	global.player = self
+	
 
 func _process(delta):
 	state_machine = $AnimationTree.get("parameters/playback")

@@ -9,9 +9,11 @@ var velocity = Vector2.ZERO
 var state_machine
 var body_entered = false
 var current
+var id = get_instance_id()
 
 func _ready():
 	global.skeleton = self
+	$RayCast2D.add_exception(self)
 	
 func handle_hit():
 	HP -= 10
@@ -29,6 +31,10 @@ func handle_hit():
 		$DeathSound.play()
 	
 func _process(delta):
+	if $RayCast2D.get_collider() != null:
+		#print($RayCast2D.get_collider().get_name() == 'Player')
+		pass
+		
 	velocity.x = 0
 	state_machine = $AnimationTree.get("parameters/playback")
 	current = state_machine.get_current_node()
@@ -71,7 +77,7 @@ func _process(delta):
 		if $FootstepSound.playing == false:
 			$FootstepSound.play()
 		
-	while body_entered == true and global.player.HP > 0 and HP > 0:
+	while body_entered == true and global.player.HP > 0 and HP > 0 and $RayCast2D.get_collider() != null:
 		state_machine.travel("attack")
 		yield(get_tree().create_timer(1.8), "timeout")
 		
@@ -103,19 +109,18 @@ func _physics_process(delta):
 	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-
-
-		
 func _on_AxeHit_body_entered(body):
-	if body.has_method("handle_hit"):
+	if body.has_method("handle_hit") and body.get_name() == 'Player':
 		body.handle_hit()
 	$AxeHitSound.play()
 
 func _on_AttackTrigger_body_entered(body):
-	body_entered = true
-	print("body entered")
+	if body.get_name() == 'Player':
+		body_entered = true
+		print('body entered')
 
 func _on_AttackTrigger_body_exited(body):
-	body_entered = false
-	print("body quit")
+	if body.get_name() == 'Player':
+		body_entered = false
+		print("body quit")
 

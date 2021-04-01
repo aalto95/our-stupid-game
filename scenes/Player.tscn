@@ -1,7 +1,7 @@
 [gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://assets/viking/viking2.png" type="Texture" id=1]
-[ext_resource path="res://scripts/Viking.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/sounds/attack_sound1.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/attack_sound2.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/whoosh.wav" type="AudioStream" id=5]
@@ -240,7 +240,7 @@ graph_offset = Vector2( -87, 17 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 
-[node name="Viking" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 2147483649
 script = ExtResource( 2 )
@@ -251,7 +251,7 @@ scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 9
-frame = 4
+frame = 1
 
 [node name="SwordHit" type="Area2D" parent="Sprite"]
 

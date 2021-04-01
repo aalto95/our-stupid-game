@@ -1,9 +1,10 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://assets/Tileset.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Demon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/SkeletonExecutioner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Viking.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/SkeletonWarrior.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/World.gd" type="Script" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -459,20 +460,26 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 position = Vector2( -1, 0 )
 script = ExtResource( 6 )
 
-[node name="EnemySkeleton" parent="." instance=ExtResource( 3 )]
+[node name="SkeletonExecutioner4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 22, 72 )
 
-[node name="EnemySkeleton2" parent="." instance=ExtResource( 3 )]
+[node name="SkeletonExecutioner3" parent="." instance=ExtResource( 3 )]
 position = Vector2( -157, 152 )
 
 [node name="SkeletonExecutioner" parent="." instance=ExtResource( 3 )]
-position = Vector2( 597, 296 )
+position = Vector2( 627, 295 )
+
+[node name="SkeletonWarrior" parent="." instance=ExtResource( 4 )]
+position = Vector2( 672, 47 )
+
+[node name="SkeletonExecutioner2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 519, 296 )
 
 [node name="Demon" parent="." instance=ExtResource( 2 )]
 position = Vector2( 359, 19 )
 
-[node name="Viking" parent="." instance=ExtResource( 5 )]
-position = Vector2( -255, 136 )
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 458, 264 )
 collision_layer = 2
 
 [node name="TileMap" type="TileMap" parent="."]

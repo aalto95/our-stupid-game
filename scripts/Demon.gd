@@ -21,7 +21,7 @@ func going_down():
 	velocity.y += 1
 	
 func _process(delta):
-	print(current)
+	#print(current)
 	state_machine = $AnimationTree.get("parameters/playback")
 	current = state_machine.get_current_node()
 	if body_entered == true && HP > 0:
