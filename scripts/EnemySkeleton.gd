@@ -63,7 +63,8 @@ func _process(delta):
 		$HurtSprite.visible = false
 		$WalkSprite.visible = false
 		$DeathSprite.visible = true
-		pass
+		$CollisionShape2D.disabled = true
+		set_physics_process(false)
 		
 	if current == "idle":
 		$WalkSprite.visible = false

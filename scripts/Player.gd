@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const game_over = preload("res://scenes/GameOver.tscn")
+
 const TARGET_FPS = 60
 const ACCELERATION = 8
 var MAX_SPEED = 64
@@ -56,6 +58,8 @@ func _process(delta):
 		set_physics_process(false) #Disable physics
 		get_tree().get_root().set_disable_input(true) #Disable input
 		yield(get_tree().create_timer(0.5), "timeout")
+		get_parent().add_child(game_over.instance())
+		queue_free()
 		
 
 func _physics_process(delta):
