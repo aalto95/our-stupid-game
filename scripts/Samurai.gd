@@ -1,12 +1,10 @@
 extends KinematicBody2D
 
-onready var Player = preload("./Player.gd").new()
-
 const TARGET_FPS = 60
 const ACCELERATION = 8
 const FRICTION = 10
 const AIR_RESISTANCE = 1
-const GRAVITY = 4
+const GRAVITY = 3
 const JUMP_FORCE = 140
 var SPEED = 30
 var HP = 30
@@ -26,7 +24,7 @@ func _physics_process(delta):
 
 func handle_hit():
 	HP -= 10
-	state_machine.travel("hit")
+	#state_machine.travel("hit")
 	print("Samurai was hit!")
 	if HP == 0:
 		$HitSprite.visible = false
