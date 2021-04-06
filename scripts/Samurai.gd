@@ -7,14 +7,32 @@ const AIR_RESISTANCE = 1
 const GRAVITY = 3
 const JUMP_FORCE = 140
 var SPEED = 30
-var HP = 30
+var HP = 50
 var motion = Vector2.ZERO
 var state_machine
 
 func _process(delta):
 	state_machine = $AnimationTree.get("parameters/playback")
 	var current = state_machine.get_current_node()
-	$IdleSprite.visible = false
+  
+	if current == "idle":
+		$IdleSprite.visible = true
+		$HitSprite.visible = false
+		$DeathSprite.visible = false
+	if current == "hit":
+		$HitSprite.visible = true
+		$DeathSprite.visible = false
+		$IdleSprite.visible = false
+		
+	if current == "death":
+		
+		$HitSprite.visible = false
+		$DeathSprite.visible = true
+		$IdleSprite.visible = false
+		$CollisionShape2D.disabled = true
+		set_physics_process(false)
+	
+	
 	
 func _physics_process(delta):
 	
@@ -23,11 +41,20 @@ func _physics_process(delta):
 	motion = move_and_slide(motion, Vector2.UP)
 
 func handle_hit():
+	
 	HP -= 10
-	#state_machine.travel("hit")
+	$HitSprite.visible = true
+	$RunSprite.visible = false
+	$IdleSprite.visible = false
+	state_machine.travel("hit")
+	
 	print("Samurai was hit!")
 	if HP == 0:
 		$HitSprite.visible = false
+		$DeathSprite.visible = true
+		$IdleSprite.visible = false
+	
+		
 		 
 		state_machine.travel("death")
 		

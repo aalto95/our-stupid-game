@@ -1,47 +1,89 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/Samurai/Idle.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Samurai.gd" type="Script" id=2]
 [ext_resource path="res://assets/Samurai/Take Hit - white silhouette.png" type="Texture" id=3]
 [ext_resource path="res://assets/Samurai/Death.png" type="Texture" id=4]
-
+[ext_resource path="res://assets/Samurai/Attack1.png" type="Texture" id=5]
+[ext_resource path="res://assets/Samurai/Run.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 21 )
 
-[sub_resource type="AnimationNodeAnimation" id=11]
-animation = "death"
-
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "hit"
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "attack"
 
 [sub_resource type="AnimationNodeAnimation" id=2]
+animation = "death"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "hit"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 
-[sub_resource type="AnimationNodeStateMachine" id=3]
-states/death/node = SubResource( 11 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachine" id=8]
+states/attack/node = SubResource( 15 )
+states/attack/position = Vector2( 623, 162 )
+states/death/node = SubResource( 2 )
 states/death/position = Vector2( 614, 50 )
-states/hit/node = SubResource( 7 )
+states/hit/node = SubResource( 3 )
 states/hit/position = Vector2( 274, 99 )
-states/idle/node = SubResource( 2 )
+states/idle/node = SubResource( 4 )
 states/idle/position = Vector2( 451, 71 )
-transitions = [ "idle", "hit", SubResource( 8 ), "hit", "idle", SubResource( 9 ), "idle", "death", SubResource( 12 ) ]
+states/run/node = SubResource( 16 )
+states/run/position = Vector2( 432, 183 )
+transitions = [ "idle", "hit", SubResource( 5 ), "hit", "idle", SubResource( 6 ), "idle", "death", SubResource( 7 ), "attack", "idle", SubResource( 17 ), "idle", "run", SubResource( 19 ), "run", "idle", SubResource( 20 ), "run", "hit", SubResource( 21 ), "run", "attack", SubResource( 23 ), "attack", "run", SubResource( 24 ), "idle", "attack", SubResource( 25 ), "attack", "hit", SubResource( 26 ) ]
 start_node = "idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
 
-[sub_resource type="Animation" id=5]
-resource_name = "attack"
+[sub_resource type="Animation" id=11]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Attack2Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 2, 4, 5 ]
+}
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=12]
 resource_name = "death"
 length = 0.8
 tracks/0/type = "value"
@@ -57,8 +99,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 5, 5 ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "hit"
+[sub_resource type="Animation" id=13]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("HitSprite:frame")
@@ -73,11 +114,26 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=14]
 length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("IdleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "run"
+tracks/0/type = "value"
+tracks/0/path = NodePath("RunSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -99,6 +155,7 @@ texture = ExtResource( 1 )
 hframes = 8
 
 [node name="HitSprite" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 hframes = 4
 
@@ -108,17 +165,31 @@ texture = ExtResource( 4 )
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -1, 1 )
 shape = SubResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 3 )
+tree_root = SubResource( 8 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 4 )
+parameters/playback = SubResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/attack = SubResource( 5 )
-anims/death = SubResource( 13 )
-anims/hit = SubResource( 10 )
-anims/idle = SubResource( 6 )
+anims/attack = SubResource( 11 )
+anims/death = SubResource( 12 )
+anims/hit = SubResource( 13 )
+anims/idle = SubResource( 14 )
+anims/run = SubResource( 10 )
+
+[node name="Attack2Sprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0.166931, 0.281006 )
+texture = ExtResource( 5 )
+hframes = 6
+frame = 5
+
+[node name="RunSprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 6 )
+hframes = 8

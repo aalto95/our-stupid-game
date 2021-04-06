@@ -1,6 +1,7 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://assets/Tileset.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Samurai.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/SkeletonExecutioner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/SkeletonWarrior.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
@@ -472,7 +473,6 @@ position = Vector2( -157, 152 )
 position = Vector2( 627, 295 )
 
 [node name="SkeletonWarrior" parent="." instance=ExtResource( 4 )]
-visible = false
 position = Vector2( 672, 47 )
 
 [node name="SkeletonExecutioner5" parent="." instance=ExtResource( 3 )]
@@ -490,6 +490,9 @@ position = Vector2( 659.255, 71.1696 )
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -268, 136 )
 collision_layer = 2
+
+[node name="Samurai" parent="." instance=ExtResource( 2 )]
+position = Vector2( -196.518, 129.726 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 0, 8 )
