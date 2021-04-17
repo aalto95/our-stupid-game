@@ -1,9 +1,8 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://assets/Tileset.png" type="Texture" id=1]
-[ext_resource path="res://scenes/Samurai.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Demon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/SkeletonExecutioner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/SkeletonWarrior.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scripts/World.gd" type="Script" id=6]
 
@@ -470,19 +469,16 @@ position = Vector2( 22, 72 )
 position = Vector2( -157, 152 )
 
 [node name="SkeletonExecutioner" parent="." instance=ExtResource( 3 )]
-position = Vector2( 627, 295 )
-
-[node name="SkeletonWarrior" parent="." instance=ExtResource( 4 )]
-position = Vector2( 672, 47 )
+position = Vector2( 404, 72 )
 
 [node name="SkeletonExecutioner5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 382.818, 71.9187 )
+position = Vector2( 263, 72 )
 
 [node name="SkeletonExecutioner6" parent="." instance=ExtResource( 3 )]
 position = Vector2( 531.15, 71.1696 )
 
 [node name="SkeletonExecutioner2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 519, 296 )
+position = Vector2( 773, 72 )
 
 [node name="SkeletonExecutioner7" parent="." instance=ExtResource( 3 )]
 position = Vector2( 659.255, 71.1696 )
@@ -491,8 +487,8 @@ position = Vector2( 659.255, 71.1696 )
 position = Vector2( -268, 136 )
 collision_layer = 2
 
-[node name="Samurai" parent="." instance=ExtResource( 2 )]
-position = Vector2( -196.518, 129.726 )
+[node name="Demon" parent="." instance=ExtResource( 2 )]
+position = Vector2( 630, 243 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 0, 8 )

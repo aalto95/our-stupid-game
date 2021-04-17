@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-const GameOverScene = preload("res://scenes/GameOver.tscn")
-
 const GRAVITY = 4
 var SPEED = 30
 var HP = 50

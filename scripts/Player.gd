@@ -58,7 +58,7 @@ func _process(delta):
 		set_physics_process(false) #Disable physics
 		get_tree().get_root().set_disable_input(true) #Disable input
 		yield(get_tree().create_timer(0.5), "timeout")
-		get_parent().add_child(game_over.instance())
+		get_tree().change_scene("res://scenes/MainMenu.tscn")
 		queue_free()
 		
 
