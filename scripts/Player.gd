@@ -56,11 +56,8 @@ func _process(delta):
 	if HP <= 0:
 		state_machine.travel("die")
 		set_physics_process(false) #Disable physics
-		get_tree().get_root().set_disable_input(true) #Disable input
+		#get_tree().get_root().set_disable_input(true) #Disable input
 		yield(get_tree().create_timer(0.5), "timeout")
-		get_tree().change_scene("res://scenes/MainMenu.tscn")
-		queue_free()
-		
 
 func _physics_process(delta):
 	
@@ -90,6 +87,7 @@ func _physics_process(delta):
 func handle_hit():
 	HP -= 10
 	print("Player was hit!")
+	$HealthBar.value -= 20
 	if HP > 0:
 		state_machine.travel("block")
 		$HurtSound.play()

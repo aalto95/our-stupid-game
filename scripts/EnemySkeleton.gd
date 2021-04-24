@@ -8,6 +8,7 @@ var state_machine
 var body_entered = false
 var current
 var id = get_instance_id()
+var time_between_hits = 0
 
 func _ready():
 	global.skeleton = self
@@ -15,6 +16,7 @@ func _ready():
 	
 func handle_hit():
 	HP -= 10
+	time_between_hits = 0
 	if HP > 0 or HP == 0:
 		if (global.player.current == "attack1"):
 			$HurtWithSwordSound1.play()
@@ -104,7 +106,7 @@ func _process(delta):
 		state_machine.travel("idle")
 		
 func _physics_process(delta):
-	
+	time_between_hits += 0.0166
 	velocity.y += GRAVITY
 	velocity = move_and_slide(velocity, Vector2.UP)
 
