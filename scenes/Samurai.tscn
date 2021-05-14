@@ -151,7 +151,7 @@ visible = false
 position = Vector2( -2, 0 )
 texture = ExtResource( 1 )
 hframes = 8
-frame = 1
+frame = 7
 
 [node name="HitSprite" type="Sprite" parent="."]
 visible = false

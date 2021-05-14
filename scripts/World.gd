@@ -8,3 +8,4 @@ func _process(delta):
 	if global.player.HP <= 0:
 		get_tree().change_scene("res://scenes/MainMenu.tscn")
 		queue_free()
+

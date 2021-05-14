@@ -9,8 +9,11 @@ onready var selector_three = $CenterContainer/VBoxContainer/CenterContainer2/VBo
 var current_selection = 0
 
 func _ready():
+	$BackgroundMusic.play()
 	set_current_selection(0)
 	
+	
+
 func _process(delta):
 	if Input.is_action_just_pressed("ui_down"):
 		if current_selection < 2:
@@ -22,8 +25,10 @@ func _process(delta):
 		set_current_selection(current_selection)
 	elif Input.is_action_just_pressed("ui_accept"):
 		handle_selection(current_selection)
+	
 		
 func handle_selection(_current_selection):
+	
 	if _current_selection == 0:
 		get_parent().add_child(first_scene.instance())
 		queue_free()
@@ -33,6 +38,7 @@ func handle_selection(_current_selection):
 		get_tree().quit()
 		
 func set_current_selection(_current_selection):
+	
 	selector_one.text = ""
 	selector_two.text = ""
 	selector_three.text = ""
@@ -42,3 +48,4 @@ func set_current_selection(_current_selection):
 		selector_two.text = ">"
 	elif _current_selection == 2:
 		selector_three.text = ">"
+
