@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pngwing.com.png-9cd8f9da193575dd99461544c35ac6ab.stex"
+path="res://.import/Fireball2.png-fa1d08d99b1ddc3179a051d4bf39d5c0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/healthbar/pngwing.com.png"
-dest_files=[ "res://.import/pngwing.com.png-9cd8f9da193575dd99461544c35ac6ab.stex" ]
+source_file="res://assets/FireBall/Fireball2.png"
+dest_files=[ "res://.import/Fireball2.png-fa1d08d99b1ddc3179a051d4bf39d5c0.stex" ]
 
 [params]
 

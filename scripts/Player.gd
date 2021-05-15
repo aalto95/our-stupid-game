@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const game_over = preload("res://scenes/GameOver.tscn")
-
+const FIREBALL = preload("res://scenes/FireBall.tscn")
 const TARGET_FPS = 60
 const ACCELERATION = 8
 var MAX_SPEED = 64
@@ -9,6 +9,7 @@ const FRICTION = 10
 const AIR_RESISTANCE = 1
 const GRAVITY = 4
 const JUMP_FORCE = 140
+
 var player_position = 0
 var velocity = Vector2.ZERO
 var HP = 50
@@ -108,6 +109,10 @@ func _unhandled_input(event):
 			state_machine.travel("attack1")
 		if event.pressed and event.scancode == KEY_F:
 			state_machine.travel("attack2")
+		if event.pressed and event.scancode == KEY_E:
+			var fireball = FIREBALL.instance()
+			get_parent().add_child(fireball)
+			fireball.position = $Position2D.global_position
 
 	 
 func _on_SwordHit_body_entered(body):

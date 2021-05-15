@@ -256,7 +256,7 @@ scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 9
-frame = 6
+frame = 2
 
 [node name="SwordHit" type="Area2D" parent="Sprite"]
 
@@ -324,7 +324,10 @@ __meta__ = {
 }
 
 [node name="pngwingcom" type="Sprite" parent="."]
-position = Vector2( -135.019, -82.1746 )
-scale = Vector2( 0.0111346, 0.00966189 )
+position = Vector2( -142.004, -75.4374 )
+scale = Vector2( 0.00746267, 0.00758205 )
 texture = ExtResource( 11 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 13.8593, 7.49153 )
 [connection signal="body_entered" from="Sprite/SwordHit" to="." method="_on_SwordHit_body_entered"]
