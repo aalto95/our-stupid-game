@@ -50,9 +50,14 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("ui_left") && HP > 0:
 		$Sprite.scale.x = -1
-	
+		if sign($Position2D.position.x) == 1:
+			$Position2D.position.x *= -1
+		
 	if Input.is_action_just_pressed("ui_right") && HP > 0:
 		$Sprite.scale.x = 1
+		if sign($Position2D.position.x) == -1:
+			$Position2D.position.x *= -1
+		
 	
 	if HP <= 0:
 		state_machine.travel("die")
@@ -111,6 +116,10 @@ func _unhandled_input(event):
 			state_machine.travel("attack2")
 		if event.pressed and event.scancode == KEY_E:
 			var fireball = FIREBALL.instance()
+			if sign($Position2D.position.x) == 1:
+				fireball.set_fireball_direction(1)
+			else:
+				fireball.set_fireball_direction(-1)
 			get_parent().add_child(fireball)
 			fireball.position = $Position2D.global_position
 
