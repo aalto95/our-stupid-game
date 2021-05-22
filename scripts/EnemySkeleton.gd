@@ -10,6 +10,7 @@ var current
 var id = get_instance_id()
 var time_between_hits = 0
 
+
 func _ready():
 	global.skeleton = self
 	$RayCast2D.add_exception(self)
@@ -124,4 +125,4 @@ func _on_AttackTrigger_body_exited(body):
 	if body.get_name() == 'Player':
 		body_entered = false
 		print("body quit")
-
+		

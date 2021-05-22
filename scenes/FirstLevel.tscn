@@ -1026,11 +1026,6 @@ extents = Vector2( 10, 44 )
 position = Vector2( -1, 0 )
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 234, 93 )
-scale = Vector2( 0.593358, 0.593358 )
-texture = ExtResource( 7 )
-
 [node name="SkeletonExecutioner4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 22, 72 )
 
@@ -1072,4 +1067,16 @@ tile_data = PoolIntArray( 131051, 4, 0, 131052, 4, 2, 196587, 4, 65536, 196588, 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 840, 27 )
 shape = SubResource( 101 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 1500, 450 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -269.416, -300 )
+scale = Vector2( 0.593358, 0.593358 )
+texture = ExtResource( 7 )
+centered = false
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
