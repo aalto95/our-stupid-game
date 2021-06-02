@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=2]
+[gd_scene load_steps=111 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Demon.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/tileset2.png" type="Texture" id=6]
 [ext_resource path="res://assets/dungeon_background.png" type="Texture" id=7]
 [ext_resource path="res://scenes/Gates.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/sounds/background music.ogg" type="AudioStream" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 16, 0, 16, 0, 16, 16, 16, 0 )
@@ -1087,4 +1088,7 @@ position = Vector2( -269.416, -300 )
 scale = Vector2( 0.593358, 0.593358 )
 texture = ExtResource( 7 )
 centered = false
+
+[node name="BackMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
