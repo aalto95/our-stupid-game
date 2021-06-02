@@ -22,7 +22,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 321.0
 margin_bottom = 180.0
-color = Color( 0.360784, 0.109804, 0.109804, 1 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 321.0

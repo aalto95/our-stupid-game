@@ -11,6 +11,7 @@ func _on_Area2D_body_entered(body):
 
 func _process(delta):
 	if global.player.HP <= 0:
+		yield(get_tree().create_timer(1), "timeout")
 		get_tree().change_scene("res://scenes/GameOver.tscn")
 		queue_free()
 	if global.player.global_position.x > 875:
