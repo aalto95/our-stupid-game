@@ -7,7 +7,7 @@ onready var selector_two = $CenterContainer/VBoxContainer/CenterContainer2/VBoxC
 var current_selection = 0
 
 func _ready():
-
+	$death.play() 
 	set_current_selection(0)
 	
 	
