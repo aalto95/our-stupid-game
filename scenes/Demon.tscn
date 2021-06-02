@@ -144,7 +144,6 @@ script = ExtResource( 2 )
 visible = false
 texture = ExtResource( 1 )
 hframes = 6
-frame = 3
 
 [node name="HurtSprite" type="Sprite" parent="."]
 visible = false
@@ -204,9 +203,12 @@ attenuation = 7.72749
 stream = ExtResource( 6 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2( 43, 43 )
+position = Vector2( 44, 47 )
 rotation = 1.58127
 scale = Vector2( 1, 3 )
+enabled = true
+collision_mask = 2
+collide_with_areas = true
 [connection signal="body_entered" from="AttackSprite/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="AttackSprite/Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="AttackSprite/FireHit" to="." method="_on_FireHit_body_entered"]

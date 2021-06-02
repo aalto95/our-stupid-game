@@ -5,6 +5,7 @@ var state_machine
 var current
 var HP = 50
 var body_entered = false
+var SPEED = 30
 
 func handle_hit():
 	HP -= 10
@@ -56,7 +57,22 @@ func _process(delta):
 		$WingsFlapSound.stop()
 		if !$DemonBreathe.playing:
 			$DemonBreathe.play()
-	
+			
+	if global.player.global_position.x < global_position.x + 10 and global.player.HP > 0 and HP > 0 and $RayCast2D.is_colliding() and current != "attack":
+		velocity.x = -SPEED
+		$AttackSprite.scale.x = 1
+		$HurtSprite.scale.x = 1
+		$DeathSprite.scale.x = 1
+		
+	elif global.player.global_position.x > global_position.x - 10 and global.player.HP > 0 and HP > 0 and $RayCast2D.is_colliding() and current != "attack":
+		velocity.x = SPEED
+		$AttackSprite.scale.x = -1
+		$HurtSprite.scale.x = -1
+		$DeathSprite.scale.x = -1
+
+	elif velocity.x == 0 and HP > 0:
+		state_machine.travel("idle")
+		
 func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 
