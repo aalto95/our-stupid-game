@@ -145,7 +145,6 @@ script = ExtResource( 2 )
 visible = false
 texture = ExtResource( 1 )
 hframes = 6
-frame = 2
 
 [node name="HurtSprite" type="Sprite" parent="."]
 visible = false

@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="MarginContainer" type="MarginContainer"]
+[ext_resource path="res://scenes/GameOver.gd" type="Script" id=1]
+
+[node name="GameOver" type="MarginContainer"]
 margin_right = 321.0
 margin_bottom = 182.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -11,3 +14,72 @@ __meta__ = {
 margin_right = 321.0
 margin_bottom = 182.0
 color = Color( 0.313726, 0.14902, 0.14902, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 321.0
+margin_bottom = 182.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 124.0
+margin_top = 66.0
+margin_right = 197.0
+margin_bottom = 116.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 73.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer"]
+margin_right = 73.0
+margin_bottom = 14.0
+text = "Game Over"
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 73.0
+margin_bottom = 50.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer2"]
+margin_left = 14.0
+margin_right = 59.0
+margin_bottom = 32.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+margin_right = 45.0
+margin_bottom = 14.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer"]
+margin_right = 45.0
+margin_bottom = 14.0
+
+[node name="Selector" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/HBoxContainer"]
+margin_right = 8.0
+margin_bottom = 14.0
+text = ">"
+
+[node name="OptionName" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer/HBoxContainer"]
+margin_left = 12.0
+margin_right = 45.0
+margin_bottom = 14.0
+text = "Retry"
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer"]
+margin_top = 18.0
+margin_right = 45.0
+margin_bottom = 32.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer2"]
+margin_left = 2.0
+margin_right = 42.0
+margin_bottom = 14.0
+
+[node name="Selector" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer2/HBoxContainer"]
+margin_right = 8.0
+margin_bottom = 14.0
+text = ">"
+
+[node name="OptionName" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2/VBoxContainer/CenterContainer2/HBoxContainer"]
+margin_left = 12.0
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Quit"

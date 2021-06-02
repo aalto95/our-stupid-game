@@ -3,10 +3,13 @@ extends KinematicBody2D
 var velocity = Vector2.ZERO
 var state_machine
 var current
-var HP = 150
+var HP = 100
 var body_entered = false
 var SPEED = 30
 
+func _ready():
+	global.demon = self
+	
 func handle_hit():
 	HP -= 10
 	if HP > 0:
@@ -59,7 +62,7 @@ func _process(delta):
 		$HurtSprite.visible = false
 		$AttackSprite.visible = true
 		$WingsFlapSound.stop()
-
+		velocity.x = 0
 		if !$DemonBreathe.playing:
 			$DemonBreathe.play()
 			

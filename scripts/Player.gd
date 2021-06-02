@@ -57,7 +57,6 @@ func _process(delta):
 		$Sprite.scale.x = 1
 		if sign($Position2D.position.x) == -1:
 			$Position2D.position.x *= -1
-		
 	
 	if HP <= 0:
 		state_machine.travel("die")
