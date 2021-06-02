@@ -17,6 +17,8 @@ var x_input = 0
 var state_machine
 var current 
 
+var can_cast_fireball = true
+
 func _ready():
 	global.player = self
 	
@@ -63,6 +65,7 @@ func _process(delta):
 		set_physics_process(false) #Disable physics
 		#get_tree().get_root().set_disable_input(true) #Disable input
 		yield(get_tree().create_timer(0.5), "timeout")
+	
 
 func _physics_process(delta):
 	
@@ -113,7 +116,7 @@ func _unhandled_input(event):
 			state_machine.travel("attack1")
 		if event.pressed and event.scancode == KEY_F:
 			state_machine.travel("attack2")
-		if event.pressed and event.scancode == KEY_E:
+		if event.pressed and event.scancode == KEY_E and can_cast_fireball:
 			var fireball = FIREBALL.instance()
 			if sign($Position2D.position.x) == 1:
 				fireball.set_fireball_direction(1)
@@ -121,6 +124,10 @@ func _unhandled_input(event):
 				fireball.set_fireball_direction(-1)
 			get_parent().add_child(fireball)
 			fireball.position = $Position2D.global_position
+			can_cast_fireball = false
+			yield(get_tree().create_timer(3), "timeout")
+			can_cast_fireball = true
+			
 
 	 
 func _on_SwordHit_body_entered(body):

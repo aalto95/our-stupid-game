@@ -25,4 +25,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_FireBall_body_entered(body):
+	if body.has_method("handle_hit"):
+		body.handle_hit()
 	queue_free()
