@@ -145,7 +145,7 @@ script = ExtResource( 2 )
 visible = false
 texture = ExtResource( 1 )
 hframes = 6
-frame = 2
+frame = 4
 
 [node name="HurtSprite" type="Sprite" parent="."]
 visible = false
@@ -181,7 +181,6 @@ texture = ExtResource( 4 )
 hframes = 11
 
 [node name="Area2D" type="Area2D" parent="AttackSprite"]
-collision_layer = 2
 collision_mask = 2147483650
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackSprite/Area2D"]
