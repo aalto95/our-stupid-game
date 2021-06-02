@@ -32,10 +32,6 @@ func handle_hit():
 		$DeathSound.play()
 	
 func _process(delta):
-	if $RayCast2D.get_collider() != null:
-		#print($RayCast2D.get_collider().get_name() == 'Player')
-		pass
-		
 	velocity.x = 0
 	state_machine = $AnimationTree.get("parameters/playback")
 	current = state_machine.get_current_node()

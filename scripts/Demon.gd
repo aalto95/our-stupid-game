@@ -3,7 +3,7 @@ extends KinematicBody2D
 var velocity = Vector2.ZERO
 var state_machine
 var current
-var HP = 50
+var HP = 150
 var body_entered = false
 var SPEED = 30
 
@@ -49,29 +49,41 @@ func _process(delta):
 		$HurtSprite.visible = false
 		$AttackSprite.visible = false
 		$DeathSprite.visible = true
+		$AttackSprite/Area2D/CollisionShape2D.disabled = true
+		$AttackSprite/FireHit/CollisionShape2D.disabled = true
+		$CollisionShape2D.disabled = true
+		going_down()
 		
 	if current == "attack":
 		$IdleSprite.visible = false
 		$HurtSprite.visible = false
 		$AttackSprite.visible = true
 		$WingsFlapSound.stop()
+
 		if !$DemonBreathe.playing:
 			$DemonBreathe.play()
 			
 	if global.player.global_position.x < global_position.x + 10 and global.player.HP > 0 and HP > 0 and $RayCast2D.is_colliding() and current != "attack":
 		velocity.x = -SPEED
+		$IdleSprite.scale.x = 1
 		$AttackSprite.scale.x = 1
 		$HurtSprite.scale.x = 1
 		$DeathSprite.scale.x = 1
+		$AttackSprite.position.x = $CollisionShape2D.position.x - 20
+		$IdleSprite.position.x = $CollisionShape2D.position.x + 20
 		
 	elif global.player.global_position.x > global_position.x - 10 and global.player.HP > 0 and HP > 0 and $RayCast2D.is_colliding() and current != "attack":
 		velocity.x = SPEED
+		$IdleSprite.scale.x = -1
 		$AttackSprite.scale.x = -1
 		$HurtSprite.scale.x = -1
 		$DeathSprite.scale.x = -1
+		$AttackSprite.position.x = $CollisionShape2D.position.x + 20
+		$IdleSprite.position.x = $CollisionShape2D.position.x - 20
 
 	elif velocity.x == 0 and HP > 0:
 		state_machine.travel("idle")
+	
 		
 func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
@@ -87,5 +99,5 @@ func _on_Area2D_body_exited(body):
 	print("body exited")
 
 func _on_FireHit_body_entered(body):
-	if body.has_method("handle_hit"):
+	if body.has_method("handle_hit") and body.get_name() == 'Player':
 		body.handle_hit()
